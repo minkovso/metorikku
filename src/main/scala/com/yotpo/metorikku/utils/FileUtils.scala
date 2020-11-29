@@ -12,6 +12,7 @@ import org.apache.hadoop.fs.{FSDataInputStream, FileSystem, Path}
 import org.apache.spark.sql.SparkSession
 
 import scala.collection.JavaConverters._
+import scala.io.Source
 
 case class HadoopPath(path: Path, fs: FileSystem) {
   def open: FSDataInputStream = {
@@ -54,11 +55,14 @@ object FileUtils {
       case _ => ""
     }
 
-    val fileContents = readFileWithHadoop(prefix + path)
+    val fileContents = readBoundedFile(prefix + path)
     StringSubstitutor.replace(fileContents, envAndSystemProperties.asJava)
   }
 
-
+  def readBoundedFile(path: String): String = {
+    val reader = Source.fromFile(path).bufferedReader()
+    reader.lines.collect(Collectors.joining("\n"))
+  }
 
   def getHadoopPath(path: String): HadoopPath = {
     val hadoopConf = SparkSession.builder().getOrCreate().sessionState.newHadoopConf()
