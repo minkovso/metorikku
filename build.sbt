@@ -12,7 +12,7 @@ developers := List(
 crossScalaVersions := Seq(
   Option(System.getenv("SCALA_VERSION")).getOrElse("2.12.11"),
   Option(System.getenv("SPARK2_SCALA_VERSION")).getOrElse("2.11.12"))
-scalaVersion := Option(System.getenv("SCALA_VERSION")).getOrElse("2.12.11")
+scalaVersion := Option(System.getenv("SCALA_VERSION")).getOrElse("2.11.12")
 
 val sparkVersion: Def.Initialize[String] = Def.setting {
   CrossVersion.partialVersion(scalaVersion.value) match {
