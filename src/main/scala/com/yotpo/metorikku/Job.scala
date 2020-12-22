@@ -70,7 +70,10 @@ case class Job(val config: Configuration) {
   }
 
   private def createSparkSession(appName: Option[String], output: Option[Output]): SparkSession = {
-    val sparkSessionBuilder = SparkSession.builder().appName(appName.get)
+    val sparkSessionBuilder = SparkSession.builder()
+      .appName(appName.get)
+      .config("hive.exec.dynamic.partition.mode", "nonstrict")
+      .enableHiveSupport()
 
     output match {
       case Some(out) => {

@@ -29,7 +29,7 @@ object ConfigurationParser {
     CLIparser.parse(args, ConfigFileName()) match {
       case Some(arguments) =>
         arguments.job match {
-          case Some(job) => parseConfigurationFile(job, FileUtils.getObjectMapperByExtension("json"))
+          case Some(job) => parseConfigurationFile(job, FileUtils.getObjectMapperByExtension("yaml"))
           case None => arguments.filename match {
             case Some(filename) => parseConfigurationFile(FileUtils.readConfigurationFile(filename), FileUtils.getObjectMapperByFileName(filename))
             case None => throw new MetorikkuException("Failed to parse config file")

@@ -1,5 +1,6 @@
 package com.yotpo.metorikku.configuration.job
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.yotpo.metorikku.configuration.job.output._
 
 case class Output(cassandra: Option[Cassandra] = None,
@@ -11,4 +12,5 @@ case class Output(cassandra: Option[Cassandra] = None,
                   file: Option[File] = None,
                   kafka: Option[Kafka] = None,
                   elasticsearch: Option[Elasticsearch] = None,
-                  hudi: Option[Hudi] = None)
+                  hudi: Option[Hudi] = None,
+                  @JsonProperty("hive_table") hiveTable: Option[HiveTable] = None)

@@ -94,7 +94,7 @@ class FileOutputWriter(props: Map[String, Object], outputFile: Option[File]) ext
           }
           case None => {
             log.info(s"Writing managed table $tableName")
-            writer.insertInto(tableName)
+            writer.saveAsTable(tableName)
           }
         }
         catalogTable.setTableMetadata(fileOutputProperties.tableProperties)
