@@ -28,7 +28,7 @@ case class Configuration(metrics: Option[Seq[String]],
   explain = Option(explain.getOrElse(false))
   appName = Option(appName.getOrElse("Metorikku"))
   continueOnFailedStep = Option(continueOnFailedStep.getOrElse(false))
-  cacheCountOnOutput = Option(cacheCountOnOutput.getOrElse(true))
+  cacheCountOnOutput = Option(cacheCountOnOutput.getOrElse(false))
   ignoreDeequValidations = Option(ignoreDeequValidations.getOrElse(false))
 
   def getReaders: Seq[Reader] = inputs.getOrElse(Map()).map {

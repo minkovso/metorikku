@@ -12,12 +12,10 @@ class HiveTableOutputWriter(props: Map[String, Object], outputTable: Option[Hive
   val log = LogManager.getLogger(this.getClass)
 
   case class TableOutputProperties(saveMode: Option[String],
-                                   tableProperties: Option[Map[String, String]],
                                    extraOptions: Option[Map[String, String]])
 
   val fileOutputProperties = TableOutputProperties(
     props.get("saveMode").asInstanceOf[Option[String]],
-    props.get("tableProperties").asInstanceOf[Option[Map[String, String]]],
     props.get("extraOptions").asInstanceOf[Option[Map[String, String]]])
 
   override def write(dataFrame: DataFrame): Unit = {

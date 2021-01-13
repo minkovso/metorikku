@@ -66,6 +66,7 @@ class FileOutputWriter(props: Map[String, Object], outputFile: Option[File]) ext
       case (Some(path), Some(file), uniquePath) => getUniquePath(path, file, uniquePath, currentTimestamp.toString)
       case (Some(path), None, Some(true)) => Option(currentTimestamp.toString + "/" + path)
       case (Some(path), None, _) => Option(path)
+      case (None, Some(file), _) => Option(file.dir)
       case _ => None
     }
     path match {
